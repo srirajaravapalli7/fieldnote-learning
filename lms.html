@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#18382e">
+    <title>Fieldnote Learning</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="lms.css">
+</head>
+<body>
+    <div class="auth-shell" id="auth-shell">
+        <div class="auth-card">
+            <div class="auth-brand" aria-label="Fieldnote Learning">
+                <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5.5A2.5 2.5 0 0 1 7.5 3H20v16H7.5A2.5 2.5 0 0 0 5 21V5.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 6h12M9 8v5l2-1.5 2 1.5V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span>fieldnote</span>
+            </div>
+            <h1>Welcome back</h1>
+            <p class="auth-copy">Sign in to access your learning dashboard and course progress.</p>
+            <form id="login-form" novalidate>
+                <label class="field">
+                    <span>Full name</span>
+                    <input id="user-name" type="text" placeholder="Jordan Miller" autocomplete="name" required>
+                </label>
+                <label class="field">
+                    <span>Email</span>
+                    <input id="user-email" type="email" placeholder="you@example.com" autocomplete="email" required>
+                </label>
+                <label class="field">
+                    <span>Password</span>
+                    <input id="user-password" type="password" placeholder="Enter your password" autocomplete="current-password" required>
+                </label>
+                <button class="button-primary auth-submit" type="submit">Log in</button>
+            </form>
+            <p class="auth-hint">Demo access: use any name and a valid email format to continue.</p>
+        </div>
+    </div>
+
+    <div class="app hidden" id="app-shell">
+        <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+            <a class="brand" href="#dashboard" aria-label="Fieldnote Learning dashboard">
+                <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5.5A2.5 2.5 0 0 1 7.5 3H20v16H7.5A2.5 2.5 0 0 0 5 21V5.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 6h12M9 8v5l2-1.5 2 1.5V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span>fieldnote</span>
+            </a>
+            <p class="workspace-label">Learning space</p>
+            <nav class="nav-list" aria-label="Learning space">
+                <button class="nav-item active" data-view="dashboard"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.7"/><rect x="13.5" y="3.5" width="7" height="5" rx="1.5" stroke="currentColor" stroke-width="1.7"/><rect x="13.5" y="11.5" width="7" height="9" rx="1.5" stroke="currentColor" stroke-width="1.7"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.7"/></svg>Overview</button>
+                <button class="nav-item" data-view="courses"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21V5.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M4 6h12M9 9v5l2-1.5 2 1.5V9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>My courses<span class="nav-count">4</span></button>
+                <button class="nav-item" data-view="assignments"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 4.5h8M9 3h6v3H9zM6 5.5H4v16h16v-16h-2M8 12l2.5 2.5L16 9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Assignments<span class="nav-count">3</span></button>
+                <button class="nav-item" data-view="discussions"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H6l-3 2v-7.5a7.5 7.5 0 1 1 17-2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 11h8M8 14h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Discussions</button>
+                <button class="nav-item" data-view="grades"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="m3 6 5-3 5 5 7-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Grades</button>
+                <button class="nav-item" data-view="certificates"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="9" r="6" stroke="currentColor" stroke-width="1.7"/><path d="m8.5 14-1 7 4.5-2.5 4.5 2.5-1-7" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>Certificates</button>
+            </nav>
+            <div class="sidebar-spacer"></div>
+            <div class="help-card">
+                <strong>Need a hand?</strong>
+                <p>Your learning team is here to help you keep moving.</p>
+                <button type="button" data-toast="Your course support team has been notified.">Contact support <span aria-hidden="true">&rarr;</span></button>
+            </div>
+            <div class="profile">
+                <div class="avatar" id="sidebar-avatar" aria-hidden="true">JM</div>
+                <div class="profile-copy"><strong id="sidebar-name">Jordan Miller</strong><span id="sidebar-role">Student account</span></div>
+            </div>
+        </aside>
+        <div class="scrim" id="scrim"></div>
+
+        <main class="main">
+            <header class="topbar">
+                <div class="topbar-start">
+                    <button class="icon-button mobile-menu" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+                    <div class="breadcrumb">Learning space <span aria-hidden="true">/</span> <strong id="breadcrumb-current">Overview</strong></div>
+                </div>
+                <div class="top-actions">
+                    <label class="search-box" aria-label="Search courses"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="1.7"/><path d="m16 16 4.2 4.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><input id="global-search" type="search" placeholder="Search courses" autocomplete="off"></label>
+                    <button class="icon-button" type="button" aria-label="Notifications" data-toast="You're all caught up on notifications."><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                    <div class="avatar" id="topbar-avatar" aria-label="Jordan Miller">JM</div>
+                </div>
+            </header>
+
+            <div class="page">
+                <section class="view active" id="view-dashboard" aria-labelledby="dashboard-title">
+                    <div class="page-heading">
+                        <div><p class="eyebrow">Thursday, October 1, 2026</p><h1 id="dashboard-title">Good morning, Jordan</h1><p class="heading-subtitle">A little progress today goes a long way.</p></div>
+                        <span class="date-label">Fall semester &middot; Week 6</span>
+                    </div>
+                    <div class="welcome-banner">
+                        <div class="welcome-copy"><p class="eyebrow">Your learning, in motion</p><h2>Pick up where you left off.</h2><p>One more lesson in Visual Storytelling and you’ll finish this week’s module.</p><button class="button-primary" type="button" data-toast="Opening lesson: The art of a good frame.">Continue learning <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+                        <img class="banner-art" src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=720&q=82" alt="Notebook and pen on a desk">
+                    </div>
+                    <div class="stats-grid" aria-label="Your learning at a glance">
+                        <div class="stat"><div class="stat-top"><span>Enrolled courses</span><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21V5.5Z" stroke="currentColor" stroke-width="1.7"/><path d="M4 6h12" stroke="currentColor" stroke-width="1.7"/></svg></span></div><div class="stat-value">04</div></div>
+                        <div class="stat"><div class="stat-top"><span>Due this week</span><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M8 3v4m8-4v4M4 10h16m-11 4h2m3 0h2m-7 3h2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span></div><div class="stat-value">03 <small>stay on track</small></div></div>
+                        <div class="stat"><div class="stat-top"><span>Average grade</span><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19V9m6 10V5m6 14v-7m6 7H2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span></div><div class="stat-value">92% <small>+4% this month</small></div></div>
+                        <div class="stat"><div class="stat-top"><span>Certificates earned</span><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="9" r="6" stroke="currentColor" stroke-width="1.7"/><path d="m8.5 14-1 7 4.5-2.5 4.5 2.5-1-7" stroke="currentColor" stroke-width="1.7"/></svg></span></div><div class="stat-value">02</div></div>
+                    </div>
+                    <div class="content-grid">
+                        <section aria-labelledby="continue-title">
+                            <div class="section-heading"><h2 id="continue-title">Continue learning</h2><button class="text-button" type="button" data-open-view="courses">All courses &rarr;</button></div>
+                            <div class="course-grid" id="dashboard-courses"></div>
+                        </section>
+                        <aside>
+                            <section class="panel" aria-labelledby="tasks-title">
+                                <div class="panel-header"><h2 id="tasks-title">Coming up</h2><button class="text-button" type="button" data-open-view="assignments">View all</button></div>
+                                <div class="panel-body" id="dashboard-tasks"></div>
+                            </section>
+                            <section class="panel view-section" aria-labelledby="activity-title">
+                                <div class="panel-header"><h2 id="activity-title">Recent activity</h2><span class="date-label">This week</span></div>
+                                <div class="panel-body"><div class="activity-list">
+                                    <div class="activity-item"><span class="activity-dot"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p><strong>Quiz complete:</strong> Foundations of Visual Design<time>Yesterday, 2:14 PM</time></p></div>
+                                    <div class="activity-item"><span class="activity-dot"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v18m-9-9h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><p><strong>New module:</strong> Intro to Field Research<time>Tuesday, 9:30 AM</time></p></div>
+                                    <div class="activity-item"><span class="activity-dot"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h16v14H4zM8 9h8m-8 4h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p><strong>Instructor note:</strong> Your latest project has feedback<time>Monday, 11:06 AM</time></p></div>
+                                </div></div>
+                            </section>
+                        </aside>
+                    </div>
+                </section>
+
+                <section class="view" id="view-courses" aria-labelledby="courses-title">
+                    <div class="page-heading"><div><p class="eyebrow">Your learning space</p><h1 id="courses-title">My courses</h1><p class="heading-subtitle">Pick a course and keep your momentum going.</p></div><button class="button-primary" type="button" data-toast="Course catalog is up to date."><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14m-7-7h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Browse catalog</button></div>
+                    <div class="course-toolbar view-section" style="margin-top:0;margin-bottom:16px"><label class="search-box"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="1.7"/><path d="m16 16 4.2 4.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><input id="course-search" type="search" placeholder="Find a course" autocomplete="off"></label><select class="filter-select" id="course-filter" aria-label="Filter courses"><option value="all">All courses</option><option value="in-progress">In progress</option><option value="not-started">Not started</option><option value="completed">Completed</option></select></div>
+                    <div class="catalog-grid" id="catalog-courses"></div>
+                </section>
+
+                <section class="view" id="view-assignments" aria-labelledby="assignments-title">
+                    <div class="page-heading"><div><p class="eyebrow">Stay on top of your work</p><h1 id="assignments-title">Assignments</h1><p class="heading-subtitle">Your upcoming deadlines and submitted work.</p></div><span class="date-label">Fall semester &middot; Week 6</span></div>
+                    <div class="table-wrap"><table><thead><tr><th>Assignment</th><th>Course</th><th>Due date</th><th>Status</th><th>Action</th></tr></thead><tbody id="assignment-rows"></tbody></table></div>
+                </section>
+
+                <section class="view" id="view-discussions" aria-labelledby="discussions-title">
+                    <div class="page-heading"><div><p class="eyebrow">Learn together</p><h1 id="discussions-title">Discussions</h1><p class="heading-subtitle">Ideas get better when they’re shared.</p></div><select class="filter-select" aria-label="Filter discussion topics"><option>All courses</option><option>Visual Storytelling</option><option>Field Research</option><option>Visual Design</option></select></div>
+                    <div class="discussion-layout"><div class="discussion-list" id="discussion-list"></div><form class="panel compose-panel" id="discussion-form"><h2>Start a conversation</h2><p>Share a question, idea, or useful resource with your classmates.</p><input type="text" id="discussion-title" placeholder="Topic title" maxlength="90" required><textarea id="discussion-message" placeholder="What’s on your mind?" maxlength="500" required></textarea><button class="button-primary" type="submit">Post to forum</button></form></div>
+                </section>
+
+                <section class="view" id="view-grades" aria-labelledby="grades-title">
+                    <div class="page-heading"><div><p class="eyebrow">Your progress, at a glance</p><h1 id="grades-title">Grades</h1><p class="heading-subtitle">Feedback and results across your courses.</p></div><span class="date-label">Updated today</span></div>
+                    <div class="grade-summary"><div class="grade-stat"><span>Overall average</span><strong>92%</strong></div><div class="grade-stat"><span>Assignments graded</span><strong>12 <small style="font:500 11px 'DM Sans',sans-serif;color:var(--muted)">of 16</small></strong></div><div class="grade-stat"><span>Instructor feedback</span><strong>4 <small style="font:500 11px 'DM Sans',sans-serif;color:var(--muted)">new notes</small></strong></div></div>
+                    <div class="table-wrap"><table><thead><tr><th>Course</th><th>Assessment</th><th>Submitted</th><th>Grade</th><th>Feedback</th></tr></thead><tbody>
+                        <tr><td class="table-title">Visual Storytelling</td><td>Photo essay: Everyday rituals</td><td>Sep 28, 2026</td><td><span class="grade-mark">94%</span></td><td><button class="text-button" type="button" data-toast="Your instructor praised the strong visual sequence and clear pacing.">View feedback</button></td></tr>
+                        <tr><td class="table-title">Foundations of Visual Design</td><td>Color theory quiz</td><td>Sep 27, 2026</td><td><span class="grade-mark">96%</span></td><td><button class="text-button" type="button" data-toast="Excellent work. Review complementary colors in question 8.">View feedback</button></td></tr>
+                        <tr><td class="table-title">Introduction to Field Research</td><td>Observation journal 1</td><td>Sep 24, 2026</td><td><span class="grade-mark">88%</span></td><td><button class="text-button" type="button" data-toast="Add more detail to your notes about the environment and context.">View feedback</button></td></tr>
+                        <tr><td class="table-title">Writing for the Web</td><td>Headline workshop</td><td>Sep 21, 2026</td><td><span class="grade-mark">90%</span></td><td><button class="text-button" type="button" data-toast="Strong, concise options. Try varying the tone in your next draft.">View feedback</button></td></tr>
+                    </tbody></table></div>
+                </section>
+
+                <section class="view" id="view-certificates" aria-labelledby="certificates-title">
+                    <div class="page-heading"><div><p class="eyebrow">A record of what you’ve learned</p><h1 id="certificates-title">Certificates</h1><p class="heading-subtitle">Celebrate the milestones you’ve reached.</p></div><span class="date-label">2 certificates earned</span></div>
+                    <div class="certificate-grid">
+                        <article class="certificate-card"><span class="certificate-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="9" r="6" stroke="currentColor" stroke-width="1.7"/><path d="m8.5 14-1 7 4.5-2.5 4.5 2.5-1-7M9.5 9l1.6 1.6L14.5 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h3>Foundations of Visual Design</h3><p>Completed September 27, 2026</p><button class="button-secondary" type="button" data-certificate="Foundations of Visual Design">View certificate</button></div></article>
+                        <article class="certificate-card"><span class="certificate-icon" style="background:#e8eee0;color:#476b50"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="9" r="6" stroke="currentColor" stroke-width="1.7"/><path d="m8.5 14-1 7 4.5-2.5 4.5 2.5-1-7M9.5 9l1.6 1.6L14.5 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h3>Writing for the Web</h3><p>Completed September 12, 2026</p><button class="button-secondary" type="button" data-certificate="Writing for the Web">View certificate</button></div></article>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+        const userData = {
+            fullName: "Jordan Miller",
+            role: "Student account",
+            email: "jordan@fieldnote.edu"
+        };
+
+        const courses = [
+            { title: "Visual Storytelling", category: "Media & design", instructor: "Maya Chen", progress: 68, lessons: "8 of 12 lessons", image: "photo-1455390582262-044cdead277a", alt: "Notebook and pen on a desk" },
+            { title: "Foundations of Visual Design", category: "Media & design", instructor: "Leo Ramirez", progress: 42, lessons: "5 of 12 lessons", image: "photo-1494438639946-1ebd1d20bf85", alt: "Books and notes on a wooden table" },
+            { title: "Introduction to Field Research", category: "Research methods", instructor: "Dr. Amina Yusuf", progress: 25, lessons: "3 of 10 lessons", image: "photo-1516321318423-f06f85e504b3", alt: "Students collaborating around a laptop" },
+            { title: "Writing for the Web", category: "Communication", instructor: "Sam Walker", progress: 100, lessons: "10 of 10 lessons", image: "photo-1455390582262-044cdead277a", alt: "Notebook and pen on a desk" }
+        ];
+        const assignments = [
+            { title: "Photo essay: A place that matters", detail: "Project · 20% of course grade", course: "Visual Storytelling", day: "03", month: "OCT", due: "Oct 3, 2026", status: "In progress", done: false },
+            { title: "Observation journal 2", detail: "Written assignment · 10%", course: "Introduction to Field Research", day: "05", month: "OCT", due: "Oct 5, 2026", status: "In progress", done: false },
+            { title: "Layout critique", detail: "Peer review · 15%", course: "Foundations of Visual Design", day: "07", month: "OCT", due: "Oct 7, 2026", status: "Not started", done: false },
+            { title: "Headline workshop", detail: "Practice · 10%", course: "Writing for the Web", day: "28", month: "SEP", due: "Sep 28, 2026", status: "Submitted", done: true },
+            { title: "Color theory quiz", detail: "Quiz · 15%", course: "Foundations of Visual Design", day: "27", month: "SEP", due: "Sep 27, 2026", status: "Graded · 96%", done: true }
+        ];
+        const discussions = [
+            { initials: "MC", name: "Maya Chen", color: "#f0c4ab", title: "What makes a photo essay feel cohesive?", text: "I’m working on the everyday rituals assignment and thinking about recurring colors as a visual thread. Has anyone tried that approach?", course: "Visual Storytelling", time: "18 min ago", replies: 8 },
+            { initials: "TR", name: "Theo R.", color: "#c8d9b7", title: "Field notes: how much detail is useful?", text: "My notes are getting long. I’d love to compare how everyone is balancing description with interpretation.", course: "Introduction to Field Research", time: "1 hour ago", replies: 5 },
+            { initials: "AK", name: "Avery K.", color: "#eadb9a", title: "Sharing a handy type pairing resource", text: "Found a great reference for pairing typefaces. It helped me rethink the hierarchy in my latest layout.", course: "Foundations of Visual Design", time: "Yesterday", replies: 12 }
+        ];
+
+        const dashboardCourses = document.getElementById("dashboard-courses");
+        const catalogCourses = document.getElementById("catalog-courses");
+        const toast = document.getElementById("toast");
+        const authShell = document.getElementById("auth-shell");
+        const appShell = document.getElementById("app-shell");
+        let toastTimer;
+
+        function getInitials(name) {
+            return name.split(" ").filter(Boolean).slice(0, 2).map(part => part[0].toUpperCase()).join("") || "JM";
+        }
+
+        function updateUserProfile(name, role = "Student account") {
+            const fullName = name.trim() || userData.fullName;
+            const initials = getInitials(fullName);
+            const profileElements = [
+                document.getElementById("sidebar-name"),
+                document.getElementById("topbar-avatar"),
+                document.getElementById("sidebar-avatar")
+            ];
+
+            profileElements.forEach(element => {
+                if (element && element.id === "sidebar-name") element.textContent = fullName;
+                if (element && element.id !== "sidebar-name") element.textContent = initials;
+            });
+
+            document.getElementById("sidebar-role").textContent = role;
+            document.getElementById("topbar-avatar").setAttribute("aria-label", fullName);
+            document.getElementById("dashboard-title").textContent = `Good morning, ${fullName.split(" ")[0]}`;
+            document.getElementById("breadcrumb-current").textContent = "Overview";
+            document.title = "Overview | Fieldnote Learning";
+        }
+
+        function loginUser(event) {
+            event.preventDefault();
+            const nameInput = document.getElementById("user-name");
+            const emailInput = document.getElementById("user-email");
+            const passwordInput = document.getElementById("user-password");
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            if (!name || !email || !password) {
+                showToast("Please enter your name, email, and password.");
+                return;
+            }
+
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showToast("Please use a valid email address.");
+                return;
+            }
+
+            userData.fullName = name;
+            userData.email = email;
+            authShell.classList.add("hidden");
+            appShell.classList.remove("hidden");
+            updateUserProfile(name);
+            showToast(`Welcome back, ${name.split(" ")[0]}!`);
+            passwordInput.value = "";
+        }
+
+        function courseCard(course) {
+            const action = course.progress === 100 ? "Review course" : course.progress === 0 ? "Start course" : "Continue";
+            return `<article class="course-card" data-course-title="${course.title.toLowerCase()}" data-course-progress="${course.progress}">
+                <div class="course-cover"><img src="https://images.unsplash.com/${course.image}?auto=format&fit=crop&w=760&q=78" alt="${course.alt}" loading="lazy"><span class="course-tag">${course.category}</span></div>
+                <div class="course-info"><h3>${course.title}</h3><p class="course-meta">${course.instructor} <span aria-hidden="true">&middot;</span> ${course.lessons}</p>
+                <div class="progress-label"><span>${course.progress === 100 ? "Completed" : "Course progress"}</span><span>${course.progress}%</span></div><div class="progress-track" role="progressbar" aria-label="${course.title} progress" aria-valuenow="${course.progress}" aria-valuemin="0" aria-valuemax="100"><span style="width:${course.progress}%"></span></div>
+                <div class="course-action"><span class="instructor">Instructor-led</span><button class="button-primary" type="button" data-toast="${action}: ${course.title}.">${action} <span aria-hidden="true">&rarr;</span></button></div></div></article>`;
+        }
+
+        function renderCourses() {
+            dashboardCourses.innerHTML = courses.slice(0, 2).map(courseCard).join("");
+            catalogCourses.innerHTML = courses.map(courseCard).join("");
+            renderCourseFilter();
+        }
+
+        function renderCourseFilter() {
+            const query = document.getElementById("course-search").value.trim().toLowerCase();
+            const status = document.getElementById("course-filter").value;
+            let visible = 0;
+            catalogCourses.querySelectorAll(".course-card").forEach(card => {
+                const progress = Number(card.dataset.courseProgress);
+                const matchesStatus = status === "all" || (status === "completed" && progress === 100) || (status === "not-started" && progress === 0) || (status === "in-progress" && progress > 0 && progress < 100);
+                const matchesQuery = card.dataset.courseTitle.includes(query);
+                card.hidden = !(matchesStatus && matchesQuery);
+                if (!card.hidden) visible++;
+            });
+            let empty = catalogCourses.querySelector(".empty-state");
+            if (visible === 0 && !empty) catalogCourses.insertAdjacentHTML("beforeend", '<p class="empty-state">No courses match your search.</p>');
+            if (visible > 0 && empty) empty.remove();
+        }
+
+        function renderTasks() {
+            document.getElementById("dashboard-tasks").innerHTML = assignments.filter(item => !item.done).slice(0, 3).map(item => `<div class="task-row"><div class="task-date"><strong>${item.day}</strong><span>${item.month}</span></div><div class="task-copy"><strong>${item.title}</strong><span>${item.course}</span></div><span class="task-status">Due soon</span></div>`).join("");
+        }
+
+        function renderAssignments() {
+            document.getElementById("assignment-rows").innerHTML = assignments.map((item, index) => `<tr><td class="table-title">${item.title}<span class="table-sub">${item.detail}</span></td><td>${item.course}</td><td>${item.due}</td><td><span class="status-pill ${item.done ? "complete" : ""}">${item.status}</span></td><td>${item.done ? "<span class=\"date-label\">--</span>" : `<button class="submit-button" type="button" data-submit="${index}">Submit work</button>`}</td></tr>`).join("");
+        }
+
+        function renderDiscussions() {
+            document.getElementById("discussion-list").innerHTML = discussions.map(item => `<article class="discussion-card"><div class="avatar" style="background:${item.color}" aria-hidden="true">${item.initials}</div><div class="discussion-content"><h3>${item.title}</h3><p>${item.text}</p><div class="discussion-meta">${item.name} &middot; ${item.course} &middot; ${item.time}</div></div><span class="reply-count">${item.replies} replies</span></article>`).join("");
+        }
+
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.add("show");
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => toast.classList.remove("show"), 2800);
+        }
+
+        function openView(name) {
+            const title = name === "dashboard" ? "Overview" : name.charAt(0).toUpperCase() + name.slice(1);
+            document.querySelectorAll(".view").forEach(view => view.classList.toggle("active", view.id === `view-${name}`));
+            document.querySelectorAll(".nav-item").forEach(button => button.classList.toggle("active", button.dataset.view === name));
+            document.getElementById("breadcrumb-current").textContent = title;
+            document.title = `${title} | Fieldnote Learning`;
+            document.getElementById("sidebar").classList.remove("open");
+            document.getElementById("scrim").classList.remove("show");
+            document.getElementById("menu-toggle").setAttribute("aria-expanded", "false");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        renderCourses();
+        renderTasks();
+        renderAssignments();
+        renderDiscussions();
+
+        document.querySelectorAll("[data-view]").forEach(button => button.addEventListener("click", () => openView(button.dataset.view)));
+        document.querySelectorAll("[data-open-view]").forEach(button => button.addEventListener("click", () => openView(button.dataset.openView)));
+        document.getElementById("login-form").addEventListener("submit", loginUser);
+        document.getElementById("course-search").addEventListener("input", renderCourseFilter);
+        document.getElementById("course-filter").addEventListener("change", renderCourseFilter);
+        document.getElementById("global-search").addEventListener("input", event => {
+            if (event.target.value.trim()) {
+                openView("courses");
+                document.getElementById("course-search").value = event.target.value;
+                renderCourseFilter();
+            }
+        });
+        document.getElementById("assignment-rows").addEventListener("click", event => {
+            const button = event.target.closest("[data-submit]");
+            if (!button) return;
+            const item = assignments[Number(button.dataset.submit)];
+            item.done = true;
+            item.status = "Submitted";
+            renderAssignments();
+            renderTasks();
+            showToast(`"${item.title}" has been submitted.`);
+        });
+        document.getElementById("discussion-form").addEventListener("submit", event => {
+            event.preventDefault();
+            const titleInput = document.getElementById("discussion-title");
+            const messageInput = document.getElementById("discussion-message");
+            discussions.unshift({ initials: "JM", name: "Jordan Miller", color: "#efbda6", title: titleInput.value.trim(), text: messageInput.value.trim(), course: "General discussion", time: "Just now", replies: 0 });
+            renderDiscussions();
+            event.target.reset();
+            showToast("Your discussion was posted.");
+        });
+        document.getElementById("menu-toggle").addEventListener("click", event => {
+            const sidebar = document.getElementById("sidebar");
+            const isOpen = sidebar.classList.toggle("open");
+            document.getElementById("scrim").classList.toggle("show", isOpen);
+            event.currentTarget.setAttribute("aria-expanded", String(isOpen));
+        });
+        document.getElementById("scrim").addEventListener("click", () => {
+            document.getElementById("sidebar").classList.remove("open");
+            document.getElementById("scrim").classList.remove("show");
+            document.getElementById("menu-toggle").setAttribute("aria-expanded", "false");
+        });
+        document.addEventListener("click", event => {
+            const toastButton = event.target.closest("[data-toast]");
+            if (toastButton) showToast(toastButton.dataset.toast);
+            const certificateButton = event.target.closest("[data-certificate]");
+            if (certificateButton) showToast(`Certificate ready: ${certificateButton.dataset.certificate}.`);
+        });
+    </script>
+</body>
+</html>
